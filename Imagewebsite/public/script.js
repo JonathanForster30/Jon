@@ -6,6 +6,8 @@ var page = 0;
 var images = [
 
 
+
+
   "img/Basketball.jpg",
   "img/download (1).jpg",
   "img/download (2).jpg",
@@ -26,6 +28,31 @@ var images = [
   "img/images (2).jpg",
   "img/images.jpg"
 ];
+
+
+var increase = function() {
+   httpGetAsync('/api/increase', callbackFunc);
+}
+
+var decrease = function() {
+   httpGetAsync('/api/decrease', callbackFunc);
+}
+
+function callbackFunc(res) {
+  console.log(res);
+}
+
+function httpGetAsync(theUrl, callback)
+{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() {
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+            callback(xmlHttp.responseText);
+    }
+    xmlHttp.open("GET", theUrl, true); // true for asynchronous
+    xmlHttp.send(null);
+}
+
 var update = function() {
   removeImages();
   showImages();
